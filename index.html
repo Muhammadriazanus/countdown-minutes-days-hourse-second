@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .main{
+        width: 100%;
+        height: 100vh;
+        background-image: url("https://th.bing.com/th/id/OIP.sT-xsy1GtnwcebmzkxPf4wHaFj?pid=ImgDet&rs=1");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+    }
+    .overlay{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        /* justify-content: center; */
+        color: white;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.7);
+
+    }
+    .title{
+        color: white;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-top: 40px;
+    }
+    .col{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        width: 1000px;
+        /* height: 100px; */
+        /* border: 1px red solid; */
+        margin:  10 auto;
+        margin-left: 150px;
+        text-align: center;
+        color: white;
+    }
+    input{
+        width: 70%;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-color: transparent;
+        border-radius: 10px;
+        /* display: block; */
+        text-align: center;
+        font-size: 20px;
+    }
+    .col div{
+        width: 250px;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="overlay">
+            <div class="title">we are coming full</div>
+            <div class="title" id="endDate">7 may 2023: 9:30</div>
+            <div class="col">
+            <div>
+                <input type="text" readonly value="0">
+                <br>
+                <label for="">Days</label>
+            </div>
+            <div>
+                <input type="text" readonly value="0">
+                <br>
+                <label for="">hours</label>
+            </div>
+            <div>
+                <input type="text" readonly value="0">
+                <br>
+                <label for="">minutes</label>
+            </div>
+            <div>
+                <input type="text" readonly value="0">
+                <br>
+                <label for="">second</label>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const endDate = "may 1 2023 2:00 AM"
+
+        document.getElementById("endDate").innerText = endDate;
+        const inputs = document.querySelectorAll("input")
+        // console.log(inputs)
+
+        function clock () {
+            const end = new Date(endDate);
+            const now = new Date()
+            console.log(end)
+            console.log(now)
+            const diff = (now - end) /1000
+            console.log(diff);
+            // console.log(diff/ 3600/60/24);
+            // console.log(Math.floor(diff / 3600 / 24));
+            inputs[0].value = Math.floor(diff /3600 / 24)
+            inputs[1].value = (Math.floor(diff / 3600) % 24)
+            console.log(Math.floor(diff / 60) % 60)
+            inputs[2].value = (Math.floor(diff / 60) % 60)
+            inputs[3].value = (Math.floor(diff) % 60)
+            // console.log(Math.floor(diff / 24 /60) % 60)
+            
+            //  days convert in to days
+        }
+
+        clock()
+//   1 days = 24 hours 
+setInterval(() => {
+    clock()
+}, 1000);
+// 
+    </script>
+</body>
+</html>
